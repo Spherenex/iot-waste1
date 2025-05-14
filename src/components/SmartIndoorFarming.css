@@ -1,0 +1,451 @@
+/* Global Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+  }
+  
+  /* App Container */
+  .app-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+  
+  /* Login Component */
+  .login-container {
+    background-color: #fff;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .login-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  
+  .login-input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .login-button {
+    background-color: #2563eb;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .login-button:hover {
+    background-color: #1d4ed8;
+  }
+  
+  .login-error {
+    color: #ef4444;
+    text-align: center;
+    margin-top: 8px;
+  }
+  
+  /* Dashboard Component */
+  .dashboard-container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+  
+  .loading-indicator {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #2563eb;
+    color: #fff;
+    padding: 16px;
+    border-radius: 8px;
+    z-index: 50;
+  }
+  
+  .notification {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background-color: #16a34a;
+    color: #fff;
+    padding: 8px;
+    border-radius: 4px;
+    z-index: 50;
+  }
+  
+  .last-update {
+    text-align: center;
+    padding: 8px;
+    background-color: #e0f2fe;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+  
+  .error-message {
+    color: #ef4444;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  
+  .dashboard-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
+  /* AgriculturalData Component */
+  .agricultural-data-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    width: 100%;
+    grid-template-areas:
+      "temp time"
+      "humidity water"
+      "soil turbidity"
+      "ph tds";
+  }
+  
+  .card {
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s;
+  }
+  
+  .card:hover {
+    transform: translateY(-4px);
+  }
+  
+  .card-temperature {
+    background: linear-gradient(to bottom, #fecaca, #f9a8d4);
+  }
+  
+  .card-time {
+    background: linear-gradient(to bottom, #bfdbfe, #dbeafe);
+  }
+  
+  .card-humidity {
+    background: linear-gradient(to bottom, #ccfbf1, #fbcfe8);
+  }
+  
+  .card-water {
+    background: linear-gradient(to bottom, #93c5fd, #dbeafe);
+  }
+  
+  .card-soil {
+    background: linear-gradient(to bottom, #d1d5db, #f3f4f6);
+  }
+  
+  .card-turbidity {
+    background: linear-gradient(to bottom, #fef08a, #cffafe);
+  }
+  
+  .card-ph {
+    background: linear-gradient(to bottom, #fef08a, #cffafe);
+  }
+  
+  .card-tds {
+    background: linear-gradient(to bottom, #bbf7d0, #dcfce7);
+  }
+  
+  .card-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 8px;
+  }
+  
+  .card-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .card-value {
+    margin: 4px 0;
+  }
+  
+  @media (max-width: 768px) {
+    .agricultural-data-grid {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "temp"
+        "time"
+        "humidity"
+        "water"
+        "soil"
+        "turbidity"
+        "ph"
+        "tds";
+    }
+  }
+  
+  /* DataTable Component */
+  .data-table-container {
+    flex: 1;
+    max-width: 640px;
+    width: 100%;
+    margin-top: 16px;
+  }
+  
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+  }
+  
+  .table-header {
+    background-color: #f3f4f6;
+    font-weight: bold;
+    padding: 8px;
+    border: 1px solid #e5e7eb;
+  }
+  
+  .table-row-even {
+    background-color: #f9fafb;
+  }
+  
+  .table-row-odd {
+    background-color: #fff;
+  }
+  
+  .table-cell {
+    padding: 8px;
+    border: 1px solid #e5e7eb;
+  }
+  
+  /* CombinedGraph Component */
+  .combined-graph-container {
+    width: 100%;
+    max-width: 640px;
+    margin-top: 16px;
+    background: linear-gradient(to bottom, #cffafe, #c4b5fd);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+  }
+  
+  /* SeparateGraphs Component */
+  .separate-graphs-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    padding: 16px;
+  }
+  
+  .graph-card {
+    padding: 16px;
+    border: 2px solid;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to bottom right, #fff, #f3f4f6);
+    transition: transform 0.2s;
+  }
+  
+  .graph-card:hover {
+    transform: scale(1.02);
+  }
+  
+  .graph-border-red {
+    border-color: #ef4444;
+  }
+  
+  .graph-border-blue {
+    border-color: #3b82f6;
+  }
+  
+  .graph-border-green {
+    border-color: #22c55e;
+  }
+  
+  .graph-border-yellow {
+    border-color: #eab308;
+  }
+  
+  .graph-border-purple {
+    border-color: #8b5cf6;
+  }
+  
+  .graph-border-cyan {
+    border-color: #06b6d4;
+  }
+  
+  .graph-title {
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  
+  @media (max-width: 1024px) {
+    .separate-graphs-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .separate-graphs-container {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* CropRecommendation Component */
+  .crop-recommendation-container {
+    margin-top: 32px;
+    padding: 16px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1024px;
+  }
+  
+  .crop-recommendation-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  
+  .crop-recommendation-form {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-label {
+    margin-bottom: 4px;
+  }
+  
+  .form-select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 192px;
+  }
+  
+  .form-button {
+    padding: 8px 16px;
+    background-color: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .form-button:hover {
+    background-color: #1d4ed8;
+  }
+  
+  .form-button-disabled {
+    padding: 8px 16px;
+    background-color: #9ca3af;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: not-allowed;
+  }
+  
+  .soil-type {
+    margin-bottom: 16px;
+  }
+  
+  .ranges-table-container {
+    margin-bottom: 16px;
+  }
+  
+  .ranges-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .ranges-table-header {
+    background-color: #2563eb;
+    color: #fff;
+    padding: 8px;
+    border: 1px solid #e5e7eb;
+  }
+  
+  .ranges-table-cell {
+    padding: 8px;
+    border: 1px solid #e5e7eb;
+  }
+  
+  .text-green {
+    color: #16a34a;
+  }
+  
+  .text-red {
+    color: #ef4444;
+  }
+  
+  .messages-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  
+  .message-warning {
+    padding: 16px;
+    background-color: #fef9c3;
+    border: 1px solid #facc15;
+    border-radius: 4px;
+  }
+  
+  .message-success {
+    padding: 16px;
+    background-color: #dcfce7;
+    border: 1px solid #22c55e;
+    border-radius: 4px;
+    grid-column: 1 / -1;
+  }
+  
+  .message-text {
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  
+  .message-action {
+    margin: 0;
+  }
+  
+  @media (max-width: 768px) {
+    .crop-recommendation-form {
+      flex-direction: column;
+    }
+  
+    .form-select {
+      width: 100%;
+    }
+  
+    .messages-container {
+      grid-template-columns: 1fr;
+    }
+  }
