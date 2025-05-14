@@ -59,30 +59,55 @@ const StorageVisualizer = () => {
     return () => clearInterval(interval);
   }, [storageValues, initialValues]);
   
-  // Calculate fill level - inverse of the value
-  // Higher values = less fill, Lower values = more fill
+  // Calculate fill level based on different thresholds for each type
   const calculateFillLevel = (key) => {
-    // If no initial values yet, return 50%
-    if (!initialValues) return 50;
+    // If no values yet, return minimum fill
+    if (!initialValues) return 5;
     
-    // Use the initial value as reference and calculate inverse fill
-    // This creates a simple inverse relationship - when values go up, fill level goes down
     const currentValue = storageValues[key];
-    const refValue = initialValues[key];
     
-    // Simple calculation: if value increases by 50%, fill decreases by 50%
-    // Start with 50% fill level
-    const baseLevel = 50;
-    const percentChange = ((currentValue - refValue) / refValue) * 100;
+    // Different calculation logic for each storage type
+    if (key === 'U1_Dry') {
+      // For U1_Dry, keep the existing relative approach
+      const refValue = initialValues[key];
+      const baseLevel = 50;
+      const percentChange = ((currentValue - refValue) / refValue) * 100;
+      let fillLevel = baseLevel - percentChange;
+      return Math.max(5, Math.min(95, fillLevel));
+    } 
+    else if (key === 'U2_Wet') {
+      // For U2_Wet, fill when below 19
+      const threshold = 19;
+      
+      if (currentValue >= threshold) {
+        // If at or above threshold, minimal fill
+        return 5;
+      } else {
+        // Calculate fill based on how far below threshold
+        // When value is 0, fill should be 95%
+        // When value is at threshold (19), fill should be 5%
+        const fillPercent = 95 - ((currentValue / threshold) * 90);
+        return Math.max(5, Math.min(95, fillPercent));
+      }
+    } 
+    else if (key === 'U3_Metal') {
+      // For U3_Metal, fill when below 9
+      const threshold = 9;
+      
+      if (currentValue >= threshold) {
+        // If at or above threshold, minimal fill
+        return 5;
+      } else {
+        // Calculate fill based on how far below threshold
+        // When value is 0, fill should be 95%
+        // When value is at threshold (9), fill should be 5%
+        const fillPercent = 95 - ((currentValue / threshold) * 90);
+        return Math.max(5, Math.min(95, fillPercent));
+      }
+    }
     
-    // Inverse relationship - subtract percent change from base level
-    // If value increases, fill decreases. If value decreases, fill increases.
-    let fillLevel = baseLevel - percentChange;
-    
-    // Ensure fill level stays between 5% and 95% for visibility
-    fillLevel = Math.max(5, Math.min(95, fillLevel));
-    
-    return fillLevel;
+    // Default return
+    return 5;
   };
   
   return (
